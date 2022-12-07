@@ -1,0 +1,52 @@
+{
+  "name": "web-inspector-discovery",
+  "version": "0.1.0",
+  "private": true,
+  "description": "web-inspector-discovery",
+  "scripts": {
+    "lint": "eslint **/*.js",
+    "lint:fix": "npm run lint -- --fix"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+kpmgfr@vs-ssh.visualstudio.com:v3/kpmgfr/Discovery/web-inspector"
+  },
+  "author": "KPMG Web Inspector Discovery",
+  "engines": {
+    "node": ">=16.13.0",
+    "npm": ">=8.1.0"
+  },
+  "type": "module",
+  "devDependencies": {
+    "eslint": "^8.2.0",
+    "eslint-config-airbnb-base": "^15.0.0",
+    "eslint-plugin-import": "^2.25.2"
+  },
+  "eslintConfig": {
+    "env": {
+      "es2021": true,
+      "node": true
+    },
+    "extends": "airbnb-base",
+    "parserOptions": {
+      "ecmaVersion": "latest",
+      "sourceType": "module"
+    },
+    "rules": {
+      "import/prefer-default-export": "off",
+      "import/extensions": [
+        "error",
+        "always"
+      ],
+      "max-len": [
+        "error",
+        {
+          "code": 120
+        }
+      ]
+    }
+  },
+  "dependencies": {
+    "puppeteer": "^14.1.1"
+  }
+}
