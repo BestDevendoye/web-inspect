@@ -1,12 +1,12 @@
 node {
 	stage('clone') {
-	    git 'https://github.com/BestDevendoye/web-inspect.git'
+	    git clone 'https://github.com/BestDevendoye/web-inspect.git'
     }
     stage('build') {
-        powershell 'npm install'
+        sh 'npm install'
     }
 
-    stage('run') {
-        powershell 'npm run inspect'
+    stage('npm run inspect') {
+        sh 'npm run inspect'
     }
 }
