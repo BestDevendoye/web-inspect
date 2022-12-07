@@ -4,17 +4,17 @@
   "private": true,
   "description": "web-inspector",
   "scripts": {
-    "changelog": "conventional-changelog -p angular -i CHANGELOG.md -s",
-    "deps": "ncu",
-    "deps:up": "ncu -u",
-    "inspect": "node ./src/inspect.js",
-    "lint": "eslint **/*.js",
-    "lint:fix": "npm run lint -- --fix",
-    "test": "cross-env NODE_OPTIONS=\"--experimental-vm-modules --no-warnings\" jest --collectCoverage",
-    "version": "npm run changelog && git add CHANGELOG.md",
-    "major": "npm version major -m \"release: %s\"",
-    "minor": "npm version minor -m \"release: %s\"",
-    "patch": "npm version patch -m \"release: %s\""
+      "changelog": "conventional-changelog -p angular -i CHANGELOG.md -s",
+      "deps": "ncu",
+      "deps:up": "ncu -u",
+      "inspect": "node ./src/inspect.js",
+      "lint": "eslint **/*.js",
+      "lint:fix": "npm run lint -- --fix",
+      "test": "cross-env NODE_OPTIONS=\"--experimental-vm-modules --no-warnings\" jest --collectCoverage",
+      "version": "npm run changelog && git add CHANGELOG.md",
+      "major": "npm version major -m \"release: %s\"",
+      "minor": "npm version minor -m \"release: %s\"",
+      "patch": "npm version patch -m \"release: %s\""
   },
   "repository": {
     "type": "git",
