@@ -12,43 +12,62 @@ export const settings = {
   formFactor: 'desktop',
 };
 
+let DEFAULT_HOME_PAGE;
+let DEFAULT_FEMME_PAGE;
+let DEFAULT_MAISON_PAGE;
+let DEFAULT_BEAUTE_PAGE;
+let DEFAULT_HOMME_PAGE;
+let DEFAULT_ENFANTS_PAGE;
+let DEFAULT_BEAUTE_PPODUCT;
+
+const getEnvironment = () => {
+  const nodeEnv = process.env.NODE_ENV.toUpperCase();
+  DEFAULT_HOME_PAGE = process.env[`DEFAULT_HOME_PAGE_${nodeEnv}`];
+  DEFAULT_FEMME_PAGE = process.env[`DEFAULT_FEMME_PAGE_${nodeEnv}`];
+  DEFAULT_MAISON_PAGE = process.env[`DEFAULT_MAISON_PAGE_${nodeEnv}`];
+  DEFAULT_BEAUTE_PAGE = process.env[`DEFAULT_BEAUTE_PAGE_${nodeEnv}`];
+  DEFAULT_HOMME_PAGE = process.env[`DEFAULT_HOMME_PAGE_${nodeEnv}`];
+  DEFAULT_ENFANTS_PAGE = process.env[`DEFAULT_ENFANTS_PAGE_${nodeEnv}`];
+  DEFAULT_BEAUTE_PPODUCT = process.env[`DEFAULT_BEAUTE_PPODUCT_${nodeEnv}`];
+};
+
 export const flow = async ({ info }, lighthouse, page) => {
+  info('Initialization of environment variables');
+  getEnvironment();
   info('Start testing flow...');
 
   info('navigate to home page');
   await lighthouse.startTimespan({ stepName: 'navigate to home page' });
-  const defaultHomePage = process.env.DEFAULT_HOME_PAGE;
-  await page.goto(defaultHomePage);
-  await lighthouse.endTimespan();
+  await page.goto(DEFAULT_HOME_PAGE);
 
   info('navigate to femme page');
   await lighthouse.startTimespan({ stepName: 'navigate to femme page' });
-  const femmeLink = await page.waitForSelector('#link1-2');
-  await femmeLink.click();
+  await page.goto(DEFAULT_FEMME_PAGE);
   await lighthouse.endTimespan();
 
   info('navigate to maison page');
   await lighthouse.startTimespan({ stepName: 'navigate to maison page' });
-  const maisonLink = await page.waitForSelector('#link1-0');
-  await maisonLink.click();
+  await page.goto(DEFAULT_MAISON_PAGE);
   await lighthouse.endTimespan();
 
   info('navigate to beaute page');
   await lighthouse.startTimespan({ stepName: 'navigate to beaute page' });
-  const beauteLink = await page.waitForSelector('#link1-4');
-  await beauteLink.click();
+  await page.goto(DEFAULT_BEAUTE_PAGE);
   await lighthouse.endTimespan();
 
   info('navigate to homme page');
   await lighthouse.startTimespan({ stepName: 'navigate to homme page' });
-  const hommeLink = await page.waitForSelector('#link1-1');
-  await hommeLink.click();
+  await page.goto(DEFAULT_HOMME_PAGE);
   await lighthouse.endTimespan();
 
   info('navigate to enfants page');
   await lighthouse.startTimespan({ stepName: 'navigate to enfants page' });
-  const enfantLink = await page.waitForSelector('#link1-3');
-  await enfantLink.click();
+  await page.goto(DEFAULT_ENFANTS_PAGE);
+  await lighthouse.endTimespan();
+
+  info('navigate to beaute ppoduct page');
+  await lighthouse.startTimespan({ stepName: 'navigate to beaute ppoduct page' });
+  await page.goto(DEFAULT_BEAUTE_PPODUCT);
   await lighthouse.endTimespan();
 
   info('LOGIN TO THE WEB APP TO ADD PRODUCTS TO THE SHOPPING CART');
@@ -93,6 +112,7 @@ export const flow = async ({ info }, lighthouse, page) => {
   await selectLProductSizeLink.click();
 
   info('click to add the selected product to the shopping cart');
+  // eslint-disable-next-line max-len
   const addProductToShoppingCartLink = await page.waitForXPath('/html/body/div[2]/div/div/section/section[3]/section/section[2]/section[1]/div[5]/div[1]/button');
   await addProductToShoppingCartLink.click();
 
